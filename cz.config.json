@@ -1,0 +1,21 @@
+{
+  "alias": { "fd": "docs: fix types" },
+  "messages": {
+    "type": "请选择一种提交类型:",
+    "subject": "请简要描述提交 message (必填):\n",
+    "confirmCommit": "确认使用以上信息提交？"
+  },
+  "types": [
+    { "value": "wip",      "name": "wip:        工作进度更新" },
+    { "value": "feat",     "name": "feat:       新增功能" },
+    { "value": "fix",      "name": "fix:        修复缺陷" },
+    { "value": "perf",     "name": "perf:       性能优化" },
+    { "value": "refactor", "name": "refactor:   代码重构（不包括 bug 修复、功能新增）"},
+    { "value": "ui",       "name": "ui:         更新 UI " },
+    { "value": "docs",     "name": "docs:       文档变更"},
+    { "value": "build",    "name": "build:      修改打包 / 构建流程、变更外部依赖"},
+    { "value": "ci",       "name": "ci:         修改 CI 配置、脚本" },
+    { "value": "revert",   "name": "revert:     回滚 commit" }
+  ],
+  "skipQuestions": ["scope", "body", "breaking", "footerPrefix", "footer"]
+}
