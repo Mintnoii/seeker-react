@@ -1,5 +1,7 @@
 {
-  "alias": { "fd": "docs: fix types" },
+  "rules": {
+    "type-empty": [2, "never"]
+  },
   "messages": {
     "type": "请选择一种提交类型:",
     "subject": "请简要描述提交 message (必填):\n",
