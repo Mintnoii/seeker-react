@@ -34,14 +34,13 @@ const codeMessageMap: codeMessageMapTypes = {
   other: '网络连接异常,请稍后再试!'
 }
 
-
 const ErrorHandler = (error: AxiosError) => {
+	// const { errMessage } = useSingletonMsg()
 	const status = error?.response?.status || 'other'
-	const { errMessage } = useSingletonMsg()
-	const showCodeMessage = (statusKey: string | number) => errMessage(statusKey, codeMessageMap[statusKey])
+	// const showCodeMessage = (statusKey: string | number) => errMessage(statusKey, codeMessageMap[statusKey])
 
   // const { logout } = useUserInfo()
-  showCodeMessage(status)
+  // showCodeMessage(status)
   // * 自定义一些处理逻辑
   // ? status 401 可以清除token信息并跳转到登录页面 伪代码
   // ? status 404 可以打印具体的路径

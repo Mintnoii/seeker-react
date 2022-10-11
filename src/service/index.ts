@@ -36,14 +36,14 @@ axiosInstance.interceptors.response.use((response: AxiosResponse) => {
   // if (response.config.url === '/user/client/account_status/' && dataAxios.error_code !== 0) {
     // logout()
   // }
-  console.log('dataAxios', dataAxios)
-  if (response.status === 200 && error_code === 0) {
-    return data
+  // console.log('dataAxios', dataAxios)
+  if(error_code) message.warn(`[${error_code}]:${error_reason}`)
+  return data
+  // if (response.status === 200 && error_code === 0) {
     // response.data = data
     // return response
-  }
-  message.warn(`[${error_code}]:${error_reason}`)
-  return response
+  // }
+  // return response
 }, errorHandler)
 
 export default axiosInstance

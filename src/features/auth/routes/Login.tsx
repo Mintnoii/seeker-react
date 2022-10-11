@@ -1,20 +1,18 @@
+import { useNavigate } from 'react-router-dom'
 import BackgroundImg from '@/assets/images/background.webp'
 import { Button, Form, Input } from 'antd'
-import { useMount, useRequest } from 'ahooks'
-import { userLogin } from '../api/login'
 import { useUser } from '@/hooks'
-// import { userAtom } from '@/stores'
-import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil'
 
-const Login = () => {
-  // const { run } = useRequest(userLogin, { manual: true })
+const LoginPage = () => {
+  const navigate = useNavigate();
   const { login } = useUser()
-  // const userInfo: any = useRecoilValue(userAtom)
-  // useMount(() => run({ username: 'wangqing', password: 'xmov1234' }))
-
-  const onFinish = (values: any) => {
-    console.log('Success:', values)
-    login(values)
+  const onFinish = async (values: any) => {
+    // console.log('Success:', values)
+    const user = await login(values)
+    if(user){
+      console.log('登录成功', user);
+      navigate('/')
+    }
   }
 
   const onFinishFailed = (errorInfo: any) => {
@@ -32,7 +30,7 @@ const Login = () => {
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
-          initialValues={{ username: 'user1', password: 'admin123' }}
+          initialValues={{ username: 'admin', password: 'admin123' }}
         >
           <Form.Item
             name="username"
@@ -68,4 +66,4 @@ const Login = () => {
     </div>
   )
 }
-export default Login
+export default LoginPage
