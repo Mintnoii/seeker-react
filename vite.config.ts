@@ -9,7 +9,7 @@ import { resolve } from 'path'
 export default defineConfig({
   base: './',
 	// TODO 可以改成自己项目的前缀
-  envPrefix: 'SEEKER_',
+  envPrefix: 'SEEKER_REACT_',
   envDir: './env',
   resolve: {
     alias: {
