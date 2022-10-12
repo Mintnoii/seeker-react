@@ -2,7 +2,7 @@ import { DesktopOutlined, FileOutlined, TeamOutlined, DownOutlined } from '@ant-
 import type { MenuProps } from 'antd'
 import { Layout, Menu, Dropdown, Space } from 'antd'
 import React, { useState } from 'react'
-import { Link, NavLink, matchRoutes, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, Navigate, Outlet } from 'react-router-dom'
 import { userAtom } from '@/stores'
 import { useRecoilState, useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil'
 import { useUser } from '@/hooks'
@@ -35,11 +35,7 @@ export const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false)
   const userInfo: any = useRecoilValue(userAtom)
   const {logout} = useUser()
-  const navigate = useNavigate()
-  const test = async () => {
-    await logout()
-    navigate('/auth/login')
-  }
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Header className="flex justify-between text-white">
@@ -53,7 +49,7 @@ export const MainLayout = () => {
         },
         {
           key: 'logout',
-          label: (<div onClick={test}>退出系统</div>),
+          label: (<div onClick={logout}>退出系统</div>),
         },
       ]}
     />}>
@@ -71,7 +67,7 @@ export const MainLayout = () => {
         </Sider>
         <Content className="p-12px flex justify-center items-center">
           {/* 渲染子路由 匹配到子路由会用子路由组件替换此处的内容 */}
-          <Outlet />
+          {userInfo ? <Outlet /> : <Navigate to="/auth/login"/>}
         </Content>
       </Layout>
     </Layout>
