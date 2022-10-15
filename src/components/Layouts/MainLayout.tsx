@@ -27,9 +27,19 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem(<NavLink to="/">首页</NavLink>, '1', <DesktopOutlined />),
-  getItem('Team', '2', <TeamOutlined />, [getItem('Team 1', '2-1'), getItem('Team 2', '2-2')]),
-  getItem('Files', '9', <FileOutlined />)
+  getItem('分组', '2', <TeamOutlined />, [getItem('业务模块 1', '2-1'), getItem('页面模块 2', '2-2')]),
+  getItem('其它', '9', <FileOutlined />)
 ]
+
+const RenderContent = () => {
+	const userInfo: any = useRecoilValue(userAtom)
+	if(userInfo){
+		// 渲染子路由 匹配到子路由会用子路由组件替换此处的内容
+		return <Outlet />
+	}
+	// 无用户信息 跳转登录页
+	return <Navigate to="/auth/login"/>
+}
 
 export const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false)
@@ -38,8 +48,8 @@ export const MainLayout = () => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Header className="flex justify-between text-white">
-      <div className="text-blue-400 font-extrabold">Seeker React</div>
+      <Header className="flex text-white justify-between">
+      <div className="font-extrabold text-blue-400">Seeker React</div>
       <Dropdown overlay={<Menu
       items={[
         {
@@ -65,9 +75,8 @@ export const MainLayout = () => {
         <Sider className='bg-white' collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
           <Menu defaultSelectedKeys={['1']} mode="inline" items={items} />
         </Sider>
-        <Content className="p-12px flex justify-center items-center">
-          {/* 渲染子路由 匹配到子路由会用子路由组件替换此处的内容 */}
-          {userInfo ? <Outlet /> : <Navigate to="/auth/login"/>}
+        <Content className="flex p-12px justify-center items-center">
+          {RenderContent()}
         </Content>
       </Layout>
     </Layout>

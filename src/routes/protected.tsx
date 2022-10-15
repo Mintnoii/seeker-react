@@ -1,5 +1,5 @@
 import { lazyLoad } from '@/utils/lazyLoad'
-import { MainLayout } from '@/components/Layouts'
+import { MainLayout } from '@/components/layouts'
 
 const HomePage = lazyLoad(() => import("@/pages/Home"), "HomePage")
 
@@ -13,15 +13,15 @@ export const protectedRoutes = [
         index: true,
         // path: '/home',
         element: HomePage
-      }
+      },
+			// {
+			// 	path: '*',
+  // 	name: '403',
+			// 	element: <MainLayout />,
+			// }
     ],
     loader: () => {
       console.log('router guard?');
     }
-  },
-	{
-		path: '*',
-    name: '404',
-		element: <MainLayout />,
-	}
+  }
 ]
