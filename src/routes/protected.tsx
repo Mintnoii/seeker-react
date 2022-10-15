@@ -16,7 +16,12 @@ export const protectedRoutes = [
       }
     ],
     loader: () => {
-      console.log('testtsttt===');
+      console.log('router guard?');
     }
   },
+	{
+		path: '*',
+    name: '404',
+		element: <MainLayout />,
+	}
 ]
